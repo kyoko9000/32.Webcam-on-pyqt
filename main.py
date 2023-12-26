@@ -8,6 +8,7 @@ from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from gui import Ui_MainWindow
 
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -45,8 +46,10 @@ class MainWindow(QMainWindow):
         p = convert_to_Qt_format.scaled(800, 600, Qt.KeepAspectRatio)
         return QPixmap.fromImage(p)
 
+
 class capture_video(QThread):
     signal = pyqtSignal(np.ndarray)
+
     def __init__(self, index):
         self.index = index
         print("start threading", self.index)
@@ -58,9 +61,11 @@ class capture_video(QThread):
             ret, cv_img = cap.read()
             if ret:
                 self.signal.emit(cv_img)
+
     def stop(self):
         print("stop threading", self.index)
         self.terminate()
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
