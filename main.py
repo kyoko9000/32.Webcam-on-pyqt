@@ -56,7 +56,7 @@ class capture_video(QThread):
         super(capture_video, self).__init__()
 
     def run(self):
-        cap = cv2.VideoCapture('D:/8.Record video/My Video.mp4')  # 'D:/8.Record video/My Video.mp4'
+        cap = cv2.VideoCapture('video1.mp4')
         while True:
             ret, cv_img = cap.read()
             if ret:
